@@ -1,5 +1,13 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
-
-createApp(App).mount('#app')
+import { createApp } from "vue";
+import "./style.css";
+import App from "./App.vue";
+import SectionWrapper from "./components/Layouts/SectionWrapper.vue";
+import { container } from "./components/Layouts/Container";
+import Flex from "./components/Layouts/Flex.vue";
+import Grid from "./components/Layouts/Grid.vue";
+const app = createApp(App);
+app.component("grid", Grid);
+app.component("flex", Flex);
+app.component("container", container);
+app.component("section-wrapper", SectionWrapper);
+app.mount("#app");

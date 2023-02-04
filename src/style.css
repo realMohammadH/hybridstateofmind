@@ -12,17 +12,24 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --primary-color: #6e61ff;
+  --secondary-color: #f1f6f1;
+  --tertiary-color: #031926;
 }
 body {
   margin: 0;
-  /* display: flex;
-  place-items: center;
-  min-width: 320px; */
   min-height: 100vh;
 }
 #app {
-  max-width: 1280px;
+  width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  min-height: 100%;
+  overflow: hidden;
+}
+:is(section, .flex, .grid, nav, header) {
+  width: 100%;
+}
+:is(section, .container, .flex, .grid, #app, body, .card) {
+  position: relative;
 }
