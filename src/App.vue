@@ -8,14 +8,13 @@ import Guidelines from "./components/Pages/Guidelines.vue";
 import EventLeadership from "./components/Pages/EventLeadership.vue";
 import FAQ from "./components/Pages/FAQ.vue";
 import Footer from "./components/Pages/Footer.vue";
+import AppHeader from "./components/main_elements/AppHeader.vue";
 </script>
 
 <template>
-  <header></header>
+  <app-header></app-header>
   <main>
-    <hero>
-      
-    </hero>
+    <hero> </hero>
     <audience></audience>
     <contents></contents>
     <community-event></community-event>
