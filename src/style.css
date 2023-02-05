@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -32,4 +33,18 @@ body {
 }
 :is(section, .container, .flex, .grid, #app, body, .card) {
   position: relative;
+}
+img {
+  object-position: center center;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+  width: 100%;
+  height: 100%;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
 }

@@ -13,7 +13,9 @@ import Footer from "./components/Pages/Footer.vue";
 <template>
   <header></header>
   <main>
-    <hero></hero>
+    <hero>
+      
+    </hero>
     <audience></audience>
     <contents></contents>
     <community-event></community-event>
