@@ -19,7 +19,5 @@ const props = defineProps({
 <style scoped>
 section {
   padding: 120px 0;
-  display: grid;
-  place-items: center;
 }
 </style>

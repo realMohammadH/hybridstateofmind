@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from "vue";
+import { ref, defineProps } from "vue";
 const props = defineProps({
   gap: {
     type: String,
@@ -20,7 +20,9 @@ const flexStyle = ref({
 </script>
 
 <template>
-  <div class="flex" :style="{ flexStyle }"></div>
+  <div class="flex" :style="flexStyle">
+    <slot></slot>
+  </div>
 </template>
 
 <style scoped>

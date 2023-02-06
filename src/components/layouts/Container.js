@@ -1,5 +1,5 @@
 import { h } from "vue";
-export const container = (props, {slots}) => {
+export const container = (props, { slots }) => {
   return h(
     "div",
     {
@@ -8,6 +8,9 @@ export const container = (props, {slots}) => {
         margin: "0 auto",
         width: "1110px",
         height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        placeItems: "center",
       },
     },
     slots

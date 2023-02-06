@@ -1,6 +1,9 @@
 <script setup>
 import { ref, defineProps, computed } from "vue";
 const props = defineProps({
+  width: {
+    type: String,
+  },
   flow: {
     type: String,
   },
@@ -30,6 +33,7 @@ const cardsHeight = computed(
 );
 
 const gridStyle = ref({
+  width: props.width,
   padding: props.padding,
   gridAutoFlow: props.flow,
   gridTemplateColumns: cardsWidth,
@@ -41,7 +45,7 @@ const gridStyle = ref({
 </script>
 
 <template>
-  <div class="grid" :style="{ gridStyle }">
+  <div class="grid" :style="gridStyle">
     <slot></slot>
   </div>
 </template>
@@ -49,6 +53,5 @@ const gridStyle = ref({
 <style scoped>
 .grid {
   display: grid;
-  grid-auto-flow: column;
 }
 </style>
