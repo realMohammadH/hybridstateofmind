@@ -13,7 +13,7 @@ import AppFooter from "./components/pages/AppFooter.vue";
 </script>
 
 <template>
-  <!-- <app-header></app-header> -->
+  <app-header></app-header>
   <main>
     <hero> </hero>
     <audience></audience>

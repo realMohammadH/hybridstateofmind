@@ -14,7 +14,7 @@ const footerLinks = ref([
       <flex alignItems="flex-start">
         <wrapper width="50%">
           <flex gap="40px">
-            <logo :backDrop="true"></logo>
+            <logo :backDrop="true" color="#29314D"></logo>
             <section-sub-title color="#CDD1D4" class="footer-description">
               Hybrid State Of Mind (HSoM) is a slack community for event
               professionals. This community is designed to help event
@@ -36,7 +36,8 @@ const footerLinks = ref([
         </wrapper>
       </flex>
       <p class="copyright">
-        © 2022 Hybrid State of Mind <span class="privacy">Privacy Policy</span>
+        &copy; 2022 Hybrid State of Mind
+        <span class="privacy">Privacy Policy</span>
       </p>
     </container>
   </footer>
