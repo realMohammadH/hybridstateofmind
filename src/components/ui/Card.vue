@@ -1,6 +1,10 @@
 <script setup>
 import { ref, defineProps } from "vue";
 const props = defineProps({
+  className: {
+    type: String,
+    default: "card",
+  },
   shadow: {
     type: Boolean,
   },
@@ -59,8 +63,10 @@ const cardStyle = ref({
 
 <template>
   <div
-    class="card"
-    :class="{ activeShadow: props.shadow, rounded: props.rounded }"
+    :class="[
+      props.className,
+      { activeShadow: props.shadow, rounded: props.rounded },
+    ]"
     :style="cardStyle"
   >
     <image-wrapper v-if="props.cardImage" :margin="props.cardImageMargin">
@@ -85,6 +91,7 @@ const cardStyle = ref({
     </p>
     <slot name="title"></slot>
     <slot name="sub-title"></slot>
+    <slot name="wrapper"></slot>
   </div>
 </template>
 

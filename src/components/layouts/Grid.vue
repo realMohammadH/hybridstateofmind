@@ -53,5 +53,6 @@ const gridStyle = ref({
 <style scoped>
 .grid {
   display: grid;
+  overflow: hidden;
 }
 </style>
