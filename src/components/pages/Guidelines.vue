@@ -11,16 +11,25 @@ const leftColCards = ref([
     title: "Bring only good vibes!",
     subTitle:
       "The pulse of our community depends on your genuine intent to collaborate and help, so bring in that dose of positivity, please!",
+    backgroundColor: "#DAC3FF",
+    padding: "26px 26px 26px 43px",
+    rounded: true,
   },
   {
     title: "Please refrain from Spamming or selling!",
     subTitle:
       "Let’s keep our community focused, clean and free from promotions! Nobody wants that!",
+    backgroundColor: "#DCF7E7",
+    padding: "26px 26px 26px 43px",
+    rounded: true,
   },
   {
     title: "Speak your mind!",
     subTitle:
-      "This is a safe space that's free of bias, conflict and criticism.",
+      "This is a safe space that's free of bias, conflict and criticism. ",
+    backgroundColor: "#FFA352",
+    padding: "26px 26px 26px 43px",
+    rounded: true,
   },
 ]);
 </script>
@@ -52,7 +61,16 @@ const leftColCards = ref([
           >
           </card>
         </grid>
-        <grid width="50%"> </grid>
+        <grid width="50%" gap="90px">
+          <card
+            v-for="c in leftColCards"
+            :cardTitle="c.title"
+            :cardSubTitle="c.subTitle"
+            :background="c.backgroundColor"
+            :padding="c.padding"
+            :rounded="c.rounded"
+          ></card>
+        </grid>
       </flex>
     </container>
   </section-wrapper>
