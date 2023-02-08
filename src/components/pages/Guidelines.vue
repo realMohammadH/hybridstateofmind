@@ -64,6 +64,7 @@ const leftColCards = ref([
         <grid width="50%" gap="90px">
           <card
             v-for="c in leftColCards"
+            :key="c"
             :cardTitle="c.title"
             :cardSubTitle="c.subTitle"
             :background="c.backgroundColor"

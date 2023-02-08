@@ -7,13 +7,20 @@ const props = defineProps({
   margin: {
     type: String,
   },
+  color: {
+    type: String,
+  },
 });
 </script>
 
 <template>
   <h3
     class="section-sub-title"
-    :style="{ fontSize: props.fontSize, margin: props.margin }"
+    :style="{
+      fontSize: props.fontSize,
+      margin: props.margin,
+      color: props.color,
+    }"
   >
     <slot />
   </h3>

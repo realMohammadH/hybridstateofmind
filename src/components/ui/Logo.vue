@@ -1,22 +1,33 @@
 <script setup>
 import { ref, defineProps } from "vue";
-const props = defineProps({});
+import LogoSvg from "./LogoSvg.vue";
+const props = defineProps({
+  color: {
+    type: String,
+  },
+  backDrop: {
+    type: Boolean,
+    default: false,
+  },
+});
 </script>
 
 <template>
-  <span class="logo"> </span>
+  <div class="logo" :class="{ backDrop: props.backDrop }">
+    <LogoSvg :color="props.color" />
+  </div>
 </template>
 
 <style scoped>
 .logo {
-  display: block;
-  position: relative;
   width: 90px;
+  flex-basis: 90px;
+  flex-shrink: 0;
   height: 75px;
+  display: grid;
+  place-items: center;
 }
-.logo::before {
-  content: "";
-  position: absolute;
+.backDrop {
   background: #ffffff;
   clip-path: polygon(
     30% 0%,
@@ -28,10 +39,7 @@ const props = defineProps({});
     0% 70%,
     0% 30%
   );
-  width: 138px;
+  flex-basis: 138px;
   height: 138px;
-  top: 50%;
-  left: 50%;
-  translate: (-50%, -50%);
 }
 </style>

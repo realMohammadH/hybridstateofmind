@@ -10,19 +10,28 @@ const props = defineProps({
   padding: {
     type: String,
   },
+  path: {
+    type: String,
+    default: "#",
+  },
 });
 
 const btnStyle = ref({
   backgroundColor: props.background,
-  color: props.color,
   padding: props.padding,
 });
 </script>
 
 <template>
-  <a class="btn" :style="btnStyle">
+  <app-link
+    class="btn"
+    :style="btnStyle"
+    :color="props.color"
+    :href="props.path"
+    :path="props.path"
+  >
     <slot />
-  </a>
+  </app-link>
 </template>
 
 <style scoped>

@@ -7,12 +7,13 @@ import GettingStarted from "./components/pages/GettingStarted.vue";
 import Guidelines from "./components/pages/Guidelines.vue";
 import EventLeadership from "./components/pages/EventLeadership.vue";
 import FAQ from "./components/pages/FAQ.vue";
-import Footer from "./components/pages/Footer.vue";
+import Footer from "./components/pages/AppFooter.vue";
 import AppHeader from "./components/main_elements/AppHeader.vue";
+import AppFooter from "./components/pages/AppFooter.vue";
 </script>
 
 <template>
-  <app-header></app-header>
+  <!-- <app-header></app-header> -->
   <main>
     <hero> </hero>
     <audience></audience>
@@ -23,7 +24,7 @@ import AppHeader from "./components/main_elements/AppHeader.vue";
     <event-leadership></event-leadership>
     <FAQ></FAQ>
   </main>
-  <footer></footer>
+  <app-footer></app-footer>
 </template>
 
 <style scoped>

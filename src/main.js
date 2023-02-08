@@ -10,9 +10,13 @@ import FloatImage from "./components/ui/FloatImage.vue";
 import { wrapper } from "./components/layouts/Wrapper";
 import SectionTitle from "./components/ui/SectionTitle.vue";
 import SectionSubTitle from "./components/ui/SectionSubTitle.vue";
-import AppButton from './components/ui/AppButton.vue'
+import AppButton from './components/ui/AppButton.vue';
+import Link from "./components/ui/Link.vue";
+import Logo from "./components/ui/Logo.vue"
 const app = createApp(App);
-app.component('app-button',AppButton)
+app.component('logo', Logo);
+app.component('app-link', Link);
+app.component('app-button', AppButton);
 app.component("section-sub-title", SectionSubTitle);
 app.component("section-title", SectionTitle);
 app.component("wrapper", wrapper);
