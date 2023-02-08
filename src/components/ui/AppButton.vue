@@ -1,22 +1,36 @@
 <script setup>
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
+const props = defineProps({
+  background: {
+    type: String,
+  },
+  color: {
+    type: String,
+  },
+  padding: {
+    type: String,
+  },
+});
+
+const btnStyle = ref({
+  backgroundColor: props.background,
+  color: props.color,
+  padding: props.padding,
+});
 </script>
 
 <template>
-  <a class="btn">
+  <a class="btn" :style="btnStyle">
     <slot />
   </a>
 </template>
 
 <style scoped>
 .btn {
-  display: grid;
-  place-items: center;
+  display: inline-block;
   background-color: #6e61ff;
   border-radius: 50vw;
   color: white;
-  width: 166px;
-  height: 56px;
   font-size: 18px;
   text-align: center;
   border: 2px solid black;
