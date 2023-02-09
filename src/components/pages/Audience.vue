@@ -1,4 +1,8 @@
 <script setup>
+import { ref } from "vue";
+import { renderImage } from "../composable/renderImage";
+const starImage = ref("../../assets/images/star.png");
+const orangeImage = ref("../../assets/images/orange.png");
 </script>
 
 <template>
@@ -24,6 +28,26 @@
             community is for you.
           </section-sub-title>
         </template>
+        <float-image
+          width="100px"
+          height="100px"
+          left="0"
+          top="0"
+          translateX="-45%"
+          translateY="-45%"
+        >
+          <img :src="renderImage(starImage)" alt="" />
+        </float-image>
+        <float-image
+          width="120px"
+          height="120px"
+          right="0"
+          top="0"
+          translateX="45%"
+          translateY="-45%"
+        >
+          <img :src="renderImage(orangeImage)" alt="" />
+        </float-image>
       </card>
     </container>
   </section-wrapper>
