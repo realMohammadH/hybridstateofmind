@@ -1,14 +1,40 @@
 <script setup>
 import { ref } from "vue";
+import { renderImage } from "../composable/renderImage";
 
 const cardsContent = ref([
-  "Stay updated with what’s hot in the world of events!",
-  "Discover your next big break or opportunity!",
-  "Voice your queries and crowdsource ideas.",
-  "Crack open the most difficult challenges with help from peers.",
-  "Share insights and make events better for everyone.",
-  "Make business connections and network with peers.",
+  {
+    title: "Stay updated with what’s hot in the world of events!",
+    image: "../../assets/images/store-1.png",
+  },
+  {
+    title: "Discover your next big break or opportunity!",
+    image: "../../assets/images/store-2.png",
+  },
+  {
+    title: "Voice your queries and crowdsource ideas.",
+    image: "../../assets/images/store-3.png",
+  },
+  {
+    title: "Crack open the most difficult challenges with help from peers.",
+    image: "../../assets/images/store-4.png",
+  },
+  {
+    title: "Share insights and make events better for everyone.",
+    image: "../../assets/images/store-5.png",
+  },
+  {
+    title: "Make business connections and network with peers.",
+    image: "../../assets/images/store-6.png",
+  },
 ]);
+
+const imageStyle = ref({
+  top: "0",
+  left: "0",
+  translateX: "20%",
+  translateY: "-50%",
+});
 </script>
 
 <template>
@@ -20,7 +46,8 @@ const cardsContent = ref([
       <grid width="100%" gridCardsWidth="350px" gap="80px 30px">
         <card
           v-for="c in cardsContent"
-          :cardTitle="c"
+          :key="c"
+          :cardTitle="c.title"
           background="white"
           :shadow="true"
           width="350px"
@@ -28,6 +55,9 @@ const cardsContent = ref([
           cardTitleSize="22px"
           :rounded="true"
         >
+          <float-image v-bind="imageStyle">
+            <img :src="renderImage(c.image)" alt="" />
+          </float-image>
         </card>
       </grid>
     </container>
