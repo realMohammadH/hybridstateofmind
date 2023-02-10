@@ -2,9 +2,6 @@
 import { ref } from "vue";
 import { renderImage } from "../composable/renderImage";
 
-const sectionVectorOne = ref("../../assets/images/start-section-v1.png");
-const sectionVectorTwo = ref("../../assets/images/start-section-v2.png");
-
 const cardsData = ref([
   {
     title: "Update your Slack profile.",
@@ -22,6 +19,33 @@ const cardsData = ref([
     subTitle:
       "Set your Slack notifications however you prefer. Join any channel you wish!",
     image: "../../assets/images/start-card-3.png",
+  },
+]);
+
+const icon1 = ref("../../assets/images/start-section-v1.png");
+const icon2 = ref("../../assets/images/start-section-v2.png");
+
+const icons = ref([
+  {
+    icon: icon1,
+    style: {
+      width: "200px",
+      height: "200px",
+      top: "5%",
+      right: "15%",
+    },
+  },
+  {
+    icon: icon2,
+    style: {
+      width: "200px",
+      height: "200px",
+      bottom: "0%",
+      left: "0%",
+      translateX: "-40%",
+      translateY: "50%",
+      index: "99",
+    },
   },
 ]);
 </script>
@@ -44,19 +68,12 @@ const cardsData = ref([
         </card>
       </grid>
     </container>
-    <float-image width="200px" height="200px" top="5%" right="15%">
-      <img :src="renderImage(sectionVectorOne)" alt="" srcset="" />
-    </float-image>
     <float-image
-      width="200px"
-      height="200px"
-      bottom="0%"
-      left="0%"
-      translateX="-40%"
-      translateY="50%"
-      index="99"
+      v-for="i in icons"
+      :key="i"
+      v-bind="i.style"
+      :image="renderImage(i.icon)"
     >
-      <img :src="renderImage(sectionVectorTwo)" alt="" srcset="" />
     </float-image>
   </section-wrapper>
 </template>

@@ -1,8 +1,33 @@
 <script setup>
 import { ref } from "vue";
 import { renderImage } from "../composable/renderImage";
-const starImage = ref("../../assets/images/star.png");
-const orangeImage = ref("../../assets/images/orange.png");
+const cardIcon1 = ref("../../assets/images/star.png");
+const cardIcon2 = ref("../../assets/images/orange.png");
+
+const cardIcons = ref([
+  {
+    icon: cardIcon1,
+    style: {
+      width: "100px",
+      height: "100px",
+      left: "0",
+      top: "0",
+      translateX: "-45%",
+      translateY: "-45%",
+    },
+  },
+  {
+    icon: cardIcon2,
+    style: {
+      width: "120px",
+      height: "120px",
+      right: "0",
+      top: "0",
+      translateX: "45%",
+      translateY: "-45%",
+    },
+  },
+]);
 
 const sectionImage = ref("../../assets/images/audience-image.png");
 </script>
@@ -31,35 +56,23 @@ const sectionImage = ref("../../assets/images/audience-image.png");
           </section-sub-title>
         </template>
         <float-image
-          width="100px"
-          height="100px"
-          left="0"
-          top="0"
-          translateX="-45%"
-          translateY="-45%"
-        >
-          <img :src="renderImage(starImage)" alt="" />
-        </float-image>
-        <float-image
-          width="120px"
-          height="120px"
-          right="0"
-          top="0"
-          translateX="45%"
-          translateY="-45%"
-        >
-          <img :src="renderImage(orangeImage)" alt="" />
-        </float-image>
+          v-for="c in cardIcons"
+          :key="c"
+          v-bind="c.style"
+          :image="renderImage(c.icon)"
+        ></float-image>
       </card>
     </container>
     <float-image
+      width="279px"
+      height="279px"
       bottom="0"
       left="0"
       translateY="50%"
       index="99"
       translateX="-40%"
+      :image="renderImage(sectionImage)"
     >
-      <img :src="renderImage(sectionImage)" alt="" srcset="" />
     </float-image>
   </section-wrapper>
 </template>

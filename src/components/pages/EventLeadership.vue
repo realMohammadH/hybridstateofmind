@@ -87,8 +87,12 @@ const icons = ref([
         >
       </wrapper>
     </container>
-    <float-image v-for="i in icons" :key="i" v-bind="i.style">
-      <img :src="renderImage(i.icon)" alt="" srcset="" />
+    <float-image
+      v-for="i in icons"
+      :key="i"
+      v-bind="i.style"
+      :image="renderImage(i.icon)"
+    >
     </float-image>
   </section-wrapper>
 </template>

@@ -16,6 +16,14 @@ const leftColCards = ref([
     padding: "26px 26px 26px 43px",
     rounded: true,
     icon: "../../assets/images/guidlines-1.png",
+    iconStyle: {
+      width: "170px",
+      height: "66px",
+      top: "0",
+      right: "0",
+      translateX: "40%",
+      translateY: "-50%",
+    },
   },
   {
     title: "Please refrain from Spamming or selling!",
@@ -25,6 +33,14 @@ const leftColCards = ref([
     padding: "26px 26px 26px 43px",
     rounded: true,
     icon: "../../assets/images/guidlines-2.png",
+    iconStyle: {
+      width: "133px",
+      height: "97px",
+      top: "0%",
+      left: "-15%",
+      translateX: "0%",
+      translateY: "-50%",
+    },
   },
   {
     title: "Speak your mind!",
@@ -34,6 +50,14 @@ const leftColCards = ref([
     padding: "26px 26px 26px 43px",
     rounded: true,
     icon: "../../assets/images/guidlines-3.png",
+    iconStyle: {
+      width: "170px",
+      height: "127px",
+      top: "0",
+      right: "0",
+      translateX: "40%",
+      translateY: "-50%",
+    },
   },
 ]);
 
@@ -104,15 +128,13 @@ const icons = ref([
             :padding="c.padding"
             :rounded="c.rounded"
           >
-            <float-image top="0" right="0" translateX="40%" translateY="-50%">
-              <img :src="renderImage(c.icon)" alt="" />
+            <float-image v-bind="c.iconStyle" :image="renderImage(c.icon)">
             </float-image>
           </card>
         </grid>
       </flex>
     </container>
-    <float-image v-for="i in icons" :key="i" v-bind="i.style">
-      <img :src="renderImage(i.icon)" alt="" srcset="" />
+    <float-image v-for="i in icons" :key="i" v-bind="i.style" :image="renderImage(i.icon)">
     </float-image>
   </section-wrapper>
 </template>

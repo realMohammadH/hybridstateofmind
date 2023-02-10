@@ -2,27 +2,53 @@
 import { ref } from "vue";
 import { renderImage } from "../composable/renderImage";
 
-const sectionVectorOne = ref("../../assets/images/community-vector.png");
-const sectionVectorTwo = ref("../../assets/images/community-vector-2.png");
-const sectionVectorThree = ref("../../assets/images/community-vector-3.png");
+const icon1 = ref("../../assets/images/community-vector.png");
+const icon2 = ref("../../assets/images/community-vector-2.png");
+const icon3 = ref("../../assets/images/community-vector-3.png");
 const sectionContentImage = ref(
   "../../assets/images/community-events-image.png"
 );
+
+const sectionVectors = ref([
+  {
+    icon: icon1,
+    style: {
+      height: "540px",
+      width: "100%",
+      bottom: "0",
+      left: "0",
+      right: "0",
+      translateY: "50%",
+    },
+  },
+  {
+    icon: icon2,
+    style: {
+      height: "90px",
+      width: "420px",
+      index: "99",
+      top: "0",
+      right: "50%",
+      translateX: "50%",
+      translateY: "-50%",
+    },
+  },
+  {
+    icon: icon3,
+    style: {
+      width: "110px",
+      height: "110px",
+      left: "16%",
+      top: "50%",
+      translateX: "50%",
+      translateY: "50%",
+    },
+  },
+]);
 </script>
 
 <template>
-  <section-wrapper class="community-events" background="#DAC3FF">
-    <float-image
-      height="90px"
-      width="420px"
-      index="99"
-      top="0"
-      right="50%"
-      translateX="50%"
-      translateY="-50%"
-    >
-      <img :src="renderImage(sectionVectorTwo)" alt="" srcset="" />
-    </float-image>
+  <section-wrapper class="community-events">
     <container>
       <wrapper width="570px" margin="0 0 48px">
         <section-title margin="0 0 15px"
@@ -39,23 +65,16 @@ const sectionContentImage = ref(
         bottom="0"
         translateY="15%"
         index="99"
+        :image="renderImage(sectionContentImage)"
       >
-        <img :src="renderImage(sectionContentImage)" alt="" srcset="" />
       </float-image>
     </container>
-    <float-image height="540px" bottom="0" left="0" right="0" translateY="50%">
-      <img :src="renderImage(sectionVectorOne)" alt="" srcset="" />
-    </float-image>
     <float-image
-      width="110px"
-      height="110px"
-      left="16%"
-      top="50%"
-      translateX="50%"
-      translateY="50%"
-    >
-      <img :src="renderImage(sectionVectorThree)" alt="" srcset="" />
-    </float-image>
+      v-for="i in sectionVectors"
+      :key="i"
+      v-bind="i.style"
+      :image="renderImage(i.icon)"
+    ></float-image>
   </section-wrapper>
 </template>
 
@@ -65,8 +84,7 @@ section {
   /* clip-path: inset(0 0 5% 0); */
   height: 750px;
   padding-bottom: 0% !important;
-}
-.community-events {
+  background: #dac3ff;
   text-align: center;
 }
 </style>

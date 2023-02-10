@@ -36,6 +36,8 @@ const imageStyle = ref({
   left: "0",
   translateX: "20%",
   translateY: "-50%",
+  width: "80px",
+  height: "80px",
 });
 </script>
 
@@ -57,8 +59,7 @@ const imageStyle = ref({
           cardTitleSize="22px"
           :rounded="true"
         >
-          <float-image v-bind="imageStyle">
-            <img :src="renderImage(c.image)" alt="" />
+          <float-image v-bind="imageStyle" :image="renderImage(c.image)">
           </float-image>
         </card>
       </grid>
@@ -70,8 +71,8 @@ const imageStyle = ref({
       right="0"
       translateX="45%"
       translateY="45%"
+      :image="renderImage(sectionImage)"
     >
-      <img :src="renderImage(sectionImage)" alt="" srcset="" />
     </float-image>
   </section-wrapper>
 </template>

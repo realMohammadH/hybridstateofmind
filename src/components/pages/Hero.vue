@@ -1,7 +1,41 @@
 <script setup>
 import { ref } from "vue";
 import { renderImage } from "../composable/renderImage";
-const heroFloatImageOne = ref("../../assets/images/hero-box.png");
+const heroFloatImage = ref("../../assets/images/hero-box.png");
+
+const heroFloatImages = ref([
+  {
+    icon: heroFloatImage,
+    style: {
+      width: "1030px",
+      height: "1030px",
+      right: "25%",
+      bottom: "-55%",
+      translateX: "50%",
+      translateY: "50%",
+    },
+  },
+  {
+    icon: heroFloatImage,
+    style: {
+      width: "1030px",
+      height: "1030px",
+      left: "-10%",
+      bottom: "15%",
+      translateX: "-50%",
+      translateY: "50%",
+    },
+  },
+  {
+    icon: heroFloatImage,
+    style: {
+      width: "1030px",
+      height: "1030px",
+      right: "-40%",
+      top: "-50%",
+    },
+  },
+]);
 </script>
 
 <template>
@@ -19,29 +53,12 @@ const heroFloatImageOne = ref("../../assets/images/hero-box.png");
         <app-button padding="13px 26px">Apply Now</app-button>
       </wrapper>
     </container>
-    <float-image width="1030px" height="1030px" right="-40%" top="-50%">
-      <img :src="renderImage(heroFloatImageOne)" alt="" />
-    </float-image>
     <float-image
-      width="1030px"
-      height="1030px"
-      right="25%"
-      bottom="-55%"
-      translateX="50%"
-      translateY="50%"
-    >
-      <img :src="renderImage(heroFloatImageOne)" alt="" />
-    </float-image>
-    <float-image
-      width="1030px"
-      height="1030px"
-      left="-10%"
-      bottom="15%"
-      translateX="-50%"
-      translateY="50%"
-    >
-      <img :src="renderImage(heroFloatImageOne)" alt="" />
-    </float-image>
+      v-for="i in heroFloatImages"
+      :key="i"
+      v-bind="i.style"
+      :image="renderImage(i.icon)"
+    ></float-image>
   </section-wrapper>
 </template>
 
