@@ -19,5 +19,6 @@ const props = defineProps({
 <style scoped>
 section {
   padding: 120px 0;
+  overflow: hidden;
 }
 </style>

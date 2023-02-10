@@ -11,6 +11,7 @@ export const container = (props, { slots }) => {
         display: "flex",
         flexDirection: "column",
         placeItems: "center",
+        zIndex: '1'
       },
     },
     slots

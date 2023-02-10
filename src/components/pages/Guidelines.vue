@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import { renderImage } from "../composable/renderImage";
 const rightColCard = ref({
   title: "Note:",
   subTitle:
@@ -14,6 +15,7 @@ const leftColCards = ref([
     backgroundColor: "#DAC3FF",
     padding: "26px 26px 26px 43px",
     rounded: true,
+    icon: "../../assets/images/guidlines-1.png",
   },
   {
     title: "Please refrain from Spamming or selling!",
@@ -22,6 +24,7 @@ const leftColCards = ref([
     backgroundColor: "#DCF7E7",
     padding: "26px 26px 26px 43px",
     rounded: true,
+    icon: "../../assets/images/guidlines-2.png",
   },
   {
     title: "Speak your mind!",
@@ -30,6 +33,36 @@ const leftColCards = ref([
     backgroundColor: "#FFA352",
     padding: "26px 26px 26px 43px",
     rounded: true,
+    icon: "../../assets/images/guidlines-3.png",
+  },
+]);
+
+const icon1 = ref("../../assets/images/guidlines-v1.png");
+const icon2 = ref("../../assets/images/guidlines-v2.png");
+
+const icons = ref([
+  {
+    icon: icon1,
+    style: {
+      width: "190px",
+      height: "190px",
+      bottom: "0%",
+      right: "0%",
+      translateY: "50%",
+      translateX: "30%",
+      index: "99",
+    },
+  },
+  {
+    icon: icon2,
+    style: {
+      width: "72px",
+      height: "72px",
+      bottom: "0%",
+      left: "5%",
+      translateY: "60%",
+      index: "99",
+    },
   },
 ]);
 </script>
@@ -70,12 +103,22 @@ const leftColCards = ref([
             :background="c.backgroundColor"
             :padding="c.padding"
             :rounded="c.rounded"
-          ></card>
+          >
+            <float-image top="0" right="0" translateX="40%" translateY="-50%">
+              <img :src="renderImage(c.icon)" alt="" />
+            </float-image>
+          </card>
         </grid>
       </flex>
     </container>
+    <float-image v-for="i in icons" :key="i" v-bind="i.style">
+      <img :src="renderImage(i.icon)" alt="" srcset="" />
+    </float-image>
   </section-wrapper>
 </template>
 
 <style scoped>
+section {
+  overflow: visible !important;
+}
 </style>

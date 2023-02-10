@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import { renderImage } from "../composable/renderImage";
 
+const sectionImage = ref("../../assets/images/store-image.png");
+
 const cardsContent = ref([
   {
     title: "Stay updated with what’s hot in the world of events!",
@@ -38,7 +40,7 @@ const imageStyle = ref({
 </script>
 
 <template>
-  <section-wrapper background="var(--primary-color)">
+  <section-wrapper>
     <container>
       <section-title color="white" margin="0 0 80px">
         What’s in store?
@@ -61,11 +63,21 @@ const imageStyle = ref({
         </card>
       </grid>
     </container>
+    <float-image
+      width="270px"
+      height="270px"
+      bottom="0"
+      right="0"
+      translateX="45%"
+      translateY="45%"
+    >
+      <img :src="renderImage(sectionImage)" alt="" srcset="" />
+    </float-image>
   </section-wrapper>
 </template>
 
 <style scoped>
-.mygrid :deep(.grid) {
-  grid-template-columns: repeat(auto-fit, 350px);
+section {
+  background-color: var(--primary-color);
 }
 </style>

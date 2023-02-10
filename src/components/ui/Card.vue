@@ -89,6 +89,7 @@ const cardStyle = ref({
     >
       {{ props.cardSubTitle }}
     </p>
+    <slot></slot>
     <slot name="title"></slot>
     <slot name="sub-title"></slot>
     <slot name="wrapper"></slot>

@@ -3,6 +3,8 @@ import { ref } from "vue";
 import { renderImage } from "../composable/renderImage";
 const starImage = ref("../../assets/images/star.png");
 const orangeImage = ref("../../assets/images/orange.png");
+
+const sectionImage = ref("../../assets/images/audience-image.png");
 </script>
 
 <template>
@@ -50,10 +52,22 @@ const orangeImage = ref("../../assets/images/orange.png");
         </float-image>
       </card>
     </container>
+    <float-image
+      bottom="0"
+      left="0"
+      translateY="50%"
+      index="99"
+      translateX="-40%"
+    >
+      <img :src="renderImage(sectionImage)" alt="" srcset="" />
+    </float-image>
   </section-wrapper>
 </template>
 
 <style scoped>
+section {
+  overflow: visible !important;
+}
 :deep(.card) {
   text-align: center !important;
 }

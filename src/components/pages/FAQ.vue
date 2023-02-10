@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from "vue";
+import { renderImage } from "../composable/renderImage";
+
 const cardsData = ref([
   "What is Hybrid State Of Mind? (HSoM)",
   "Who is it meant for?",
@@ -8,6 +10,30 @@ const cardsData = ref([
   "Can I promote my services or products in any of the channels here?",
   "If I want to add my friends or colleagues to this community, how do I do it?",
   "Can I start a channel within the community or volunteer to become a moderator?",
+]);
+
+const icon1 = ref("../../assets/images/faq-v1.png");
+const icon2 = ref("../../assets/images/faq-v2.png");
+
+const icons = ref([
+  {
+    icon: icon1,
+    style: {
+      width: "160px",
+      height: "160px",
+      top: "22%",
+      right: "8%",
+    },
+  },
+  {
+    icon: icon2,
+    style: {
+      width: "58px",
+      height: "58px",
+      bottom: "5%",
+      left: "5%",
+    },
+  },
 ]);
 </script>
 
@@ -25,6 +51,9 @@ const cardsData = ref([
         </card>
       </wrapper>
     </container>
+    <float-image v-for="i in icons" :key="i" v-bind="i.style">
+      <img :src="renderImage(i.icon)" alt="" srcset="" />
+    </float-image>
   </section-wrapper>
 </template>
 

@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { renderImage } from "../composable/renderImage";
+const heroFloatImageOne = ref("../../assets/images/hero-box.png");
+</script>
 
 <template>
   <section-wrapper class="hero">
@@ -15,6 +19,29 @@
         <app-button padding="13px 26px">Apply Now</app-button>
       </wrapper>
     </container>
+    <float-image width="1030px" height="1030px" right="-40%" top="-50%">
+      <img :src="renderImage(heroFloatImageOne)" alt="" />
+    </float-image>
+    <float-image
+      width="1030px"
+      height="1030px"
+      right="25%"
+      bottom="-55%"
+      translateX="50%"
+      translateY="50%"
+    >
+      <img :src="renderImage(heroFloatImageOne)" alt="" />
+    </float-image>
+    <float-image
+      width="1030px"
+      height="1030px"
+      left="-10%"
+      bottom="15%"
+      translateX="-50%"
+      translateY="50%"
+    >
+      <img :src="renderImage(heroFloatImageOne)" alt="" />
+    </float-image>
   </section-wrapper>
 </template>
 

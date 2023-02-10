@@ -27,6 +27,9 @@ const props = defineProps({
     type: String,
     default: "0px",
   },
+  index: {
+    type: Number,
+  },
 });
 
 const translate = computed(() => {
@@ -41,6 +44,7 @@ const floatImageStyle = ref({
   width: props.width,
   height: props.height,
   transform: translate,
+  zIndex: props.index,
 });
 </script>
 
@@ -53,6 +57,5 @@ const floatImageStyle = ref({
 <style scoped>
 .float-image {
   position: absolute;
-  background: #dff;
 }
 </style>

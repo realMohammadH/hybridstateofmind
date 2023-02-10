@@ -53,7 +53,7 @@ header {
   height: 122px;
   padding: 24px 0;
   z-index: 999;
-  background-color: white;
+  background-color: var(--secondary-color);
 }
 header nav {
   height: 100%;

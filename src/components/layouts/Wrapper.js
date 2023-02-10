@@ -6,6 +6,7 @@ export const wrapper = (props, { slots }) => {
     {
       class: "wrapper",
       style: {
+        position: 'relative',
         width: props.width,
         height: props.height,
         margin: props.margin,
