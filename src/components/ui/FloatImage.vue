@@ -30,6 +30,9 @@ const props = defineProps({
   index: {
     type: Number,
   },
+  image: {
+    type: String,
+  },
 });
 
 const translate = computed(() => {
@@ -49,9 +52,13 @@ const floatImageStyle = ref({
 </script>
 
 <template>
-  <figure class="float-image" :style="floatImageStyle">
-    <slot></slot>
-  </figure>
+  <img
+    class="float-image"
+    :src="props.image"
+    alt=""
+    srcset=""
+    :style="floatImageStyle"
+  />
 </template>
 
 <style scoped>
