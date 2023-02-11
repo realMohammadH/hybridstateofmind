@@ -36,13 +36,18 @@ const heroFloatImages = ref([
     },
   },
 ]);
+
+const floatNavIcons = ref([
+  "../../assets/icons/linkedin.svg",
+  "../../assets/icons/twitter.svg",
+]);
 </script>
 
 <template>
   <section-wrapper class="hero">
     <container>
       <wrapper width="730px" align="center">
-        <section-title margin="0 0 15px">
+        <section-title margin="0 0 15px" fontSize="67px">
           Where Event Folks Hang Out
         </section-title>
         <section-sub-title margin="0 0 40px">
@@ -59,6 +64,11 @@ const heroFloatImages = ref([
       v-bind="i.style"
       :image="renderImage(i.icon)"
     ></float-image>
+    <div class="float-nav">
+      <a href="#" v-for="i in floatNavIcons" :key="i">
+        <img :src="renderImage(i)" alt="" />
+      </a>
+    </div>
   </section-wrapper>
 </template>
 
@@ -66,5 +76,23 @@ const heroFloatImages = ref([
 .hero {
   background-color: var(--secondary-color);
   padding-top: 220px;
+}
+
+.float-nav {
+  position: absolute;
+  right: 0;
+  bottom: 5%;
+  padding: 26px 16px;
+  background-color: #dcf7e7;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+}
+.float-nav a {
+  width: 24px;
+  height: 24px;
 }
 </style>
