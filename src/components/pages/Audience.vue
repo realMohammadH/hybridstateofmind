@@ -80,6 +80,7 @@ const sectionImage = ref("../../assets/images/audience-image.png");
 <style scoped>
 section {
   overflow: visible !important;
+  background-color: white;
 }
 :deep(.card) {
   text-align: center !important;

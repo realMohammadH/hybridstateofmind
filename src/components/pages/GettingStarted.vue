@@ -82,5 +82,6 @@ const icons = ref([
 section {
   overflow: visible !important;
   padding-top: 180px !important;
+  background-color: white;
 }
 </style>
