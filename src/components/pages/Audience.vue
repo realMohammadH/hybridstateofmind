@@ -1,6 +1,10 @@
 <script setup>
-import { ref } from "vue";
-import { renderImage } from "../composable/renderImage";
+import { ref, onMounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const cardIcon1 = ref("../../assets/images/star.png");
 const cardIcon2 = ref("../../assets/images/orange.png");
 
@@ -30,10 +34,46 @@ const cardIcons = ref([
 ]);
 
 const sectionImage = ref("../../assets/images/audience-image.png");
+
+const vector = ref([]);
+
+const section = ref(null);
+
+const star = ref(null);
+
+const starAnimationSpeed = ref(2);
+
+onMounted(() => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section.value.$el,
+      start: "top center",
+      end: "10% 50%",
+    },
+  });
+
+  vector.value.forEach((v) => {
+    tl.fromTo(
+      v.$el,
+      { opacity: 0, scale: 0 },
+      { opacity: 1, scale: 1, duration: 0.4 }
+    );
+  });
+
+  // window.addEventListener("scroll", () => {
+  //   starAnimationSpeed.value = 4;
+  // });
+  gsap.to(star.value.$el, {
+    rotation: 360,
+    repeat: -1,
+    ease: "none",
+    duration: starAnimationSpeed.value,
+  });
+});
 </script>
 
 <template>
-  <section-wrapper>
+  <section-wrapper ref="section">
     <container>
       <card
         width="730px"
@@ -43,6 +83,7 @@ const sectionImage = ref("../../assets/images/audience-image.png");
         radius="24px"
         :shadow="true"
         :rounded="true"
+        ref="myCard"
       >
         <template #title>
           <section-title margin="0 0 22px">Who is this for?</section-title>
@@ -59,7 +100,8 @@ const sectionImage = ref("../../assets/images/audience-image.png");
           v-for="c in cardIcons"
           :key="c"
           v-bind="c.style"
-          :image="renderImage(c.icon)"
+          ref="vector"
+          :image="$renderImage(c.icon)"
         ></float-image>
       </card>
     </container>
@@ -69,9 +111,10 @@ const sectionImage = ref("../../assets/images/audience-image.png");
       bottom="0"
       left="0"
       translateY="50%"
-      index="99"
+      :zIndex="99"
       translateX="-40%"
-      :image="renderImage(sectionImage)"
+      ref="star"
+      :image="$renderImage(sectionImage)"
     >
     </float-image>
   </section-wrapper>
@@ -84,5 +127,16 @@ section {
 }
 :deep(.card) {
   text-align: center !important;
+}
+
+.ball {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
 }
 </style>
