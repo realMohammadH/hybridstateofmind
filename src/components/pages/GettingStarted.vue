@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { renderImage } from "../composable/renderImage";
 
 const cardsData = ref([
   {
@@ -44,7 +43,7 @@ const icons = ref([
       left: "0%",
       translateX: "-40%",
       translateY: "50%",
-      index: "99",
+      zIndex: 99,
     },
   },
 ]);
@@ -62,7 +61,7 @@ const icons = ref([
           cardTitleMargin="0 0 15px"
           :cardSubTitle="c.subTitle"
           width="300px"
-          :cardImage="renderImage(c.image)"
+          :cardImage="$renderImage(c.image)"
           cardImageMargin="0 0 24px"
         >
         </card>
@@ -72,7 +71,7 @@ const icons = ref([
       v-for="i in icons"
       :key="i"
       v-bind="i.style"
-      :image="renderImage(i.icon)"
+      :image="$renderImage(i.icon)"
     >
     </float-image>
   </section-wrapper>

@@ -1,6 +1,5 @@
 <script setup>
 import { ref, render } from "vue";
-import { renderImage } from "../composable/renderImage";
 
 const icon1 = ref("../../assets/images/leaderShip-1.png");
 const icon2 = ref("../../assets/images/leaderShip-2.png");
@@ -91,7 +90,7 @@ const icons = ref([
       v-for="i in icons"
       :key="i"
       v-bind="i.style"
-      :image="renderImage(i.icon)"
+      :image="$renderImage(i.icon)"
     >
     </float-image>
   </section-wrapper>

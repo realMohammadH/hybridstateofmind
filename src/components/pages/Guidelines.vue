@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { renderImage } from "../composable/renderImage";
 const rightColCard = ref({
   title: "Note:",
   subTitle:
@@ -74,7 +73,7 @@ const icons = ref([
       right: "0%",
       translateY: "50%",
       translateX: "30%",
-      index: "99",
+      zIndex: 99,
     },
   },
   {
@@ -85,7 +84,7 @@ const icons = ref([
       bottom: "0%",
       left: "5%",
       translateY: "60%",
-      index: "99",
+      zIndex: 99,
     },
   },
 ]);
@@ -128,13 +127,18 @@ const icons = ref([
             :padding="c.padding"
             :rounded="c.rounded"
           >
-            <float-image v-bind="c.iconStyle" :image="renderImage(c.icon)">
+            <float-image v-bind="c.iconStyle" :image="$renderImage(c.icon)">
             </float-image>
           </card>
         </grid>
       </flex>
     </container>
-    <float-image v-for="i in icons" :key="i" v-bind="i.style" :image="renderImage(i.icon)">
+    <float-image
+      v-for="i in icons"
+      :key="i"
+      v-bind="i.style"
+      :image="$renderImage(i.icon)"
+    >
     </float-image>
   </section-wrapper>
 </template>

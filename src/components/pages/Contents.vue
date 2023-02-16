@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue";
-import { renderImage } from "../composable/renderImage";
+import { ref, onMounted } from "vue";
+
 
 const sectionImage = ref("../../assets/images/store-image.png");
 
@@ -59,7 +59,7 @@ const imageStyle = ref({
           cardTitleSize="22px"
           :rounded="true"
         >
-          <float-image v-bind="imageStyle" :image="renderImage(c.image)">
+          <float-image v-bind="imageStyle" :image="$renderImage(c.image)">
           </float-image>
         </card>
       </grid>
@@ -71,7 +71,7 @@ const imageStyle = ref({
       right="0"
       translateX="45%"
       translateY="45%"
-      :image="renderImage(sectionImage)"
+      :image="$renderImage(sectionImage)"
     >
     </float-image>
   </section-wrapper>

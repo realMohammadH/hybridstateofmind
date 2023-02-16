@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { renderImage } from "../composable/renderImage";
 const heroFloatImage = ref("../../assets/images/hero-box.png");
 
 const heroFloatImages = ref([
@@ -62,11 +61,11 @@ const floatNavIcons = ref([
       v-for="i in heroFloatImages"
       :key="i"
       v-bind="i.style"
-      :image="renderImage(i.icon)"
+      :image="$renderImage(i.icon)"
     ></float-image>
     <div class="float-nav">
       <a href="#" v-for="i in floatNavIcons" :key="i">
-        <img :src="renderImage(i)" alt="" />
+        <img :src="$renderImage(i)" alt="" />
       </a>
     </div>
   </section-wrapper>

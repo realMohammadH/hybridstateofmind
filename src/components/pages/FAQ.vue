@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { renderImage } from "../composable/renderImage";
 
 const cardsData = ref([
   "What is Hybrid State Of Mind? (HSoM)",
@@ -42,7 +41,7 @@ const icons = ref([
     <container>
       <wrapper align="center" width="100%">
         <section-title margin="0 0 40px"> FAQ's </section-title>
-        <card rounded="true" padding="0" className="grid-wrapper">
+        <card :rounded="true" padding="0" className="grid-wrapper">
           <template #wrapper>
             <grid>
               <div class="card" v-for="c in cardsData" :key="c">{{ c }}</div>
@@ -55,7 +54,7 @@ const icons = ref([
       v-for="i in icons"
       :key="i"
       v-bind="i.style"
-      :image="renderImage(i.icon)"
+      :image="$renderImage(i.icon)"
     >
     </float-image>
   </section-wrapper>

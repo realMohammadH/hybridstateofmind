@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { renderImage } from "../composable/renderImage";
 
 const icon1 = ref("../../assets/images/community-vector.png");
 const icon2 = ref("../../assets/images/community-vector-2.png");
@@ -26,7 +25,7 @@ const sectionVectors = ref([
     style: {
       height: "90px",
       width: "420px",
-      index: "99",
+      zIndex: 99,
       top: "0",
       right: "50%",
       translateX: "50%",
@@ -64,8 +63,8 @@ const sectionVectors = ref([
         height="464px"
         bottom="0"
         translateY="15%"
-        index="99"
-        :image="renderImage(sectionContentImage)"
+        :zIndex="99"
+        :image="$renderImage(sectionContentImage)"
       >
       </float-image>
     </container>
@@ -73,7 +72,7 @@ const sectionVectors = ref([
       v-for="i in sectionVectors"
       :key="i"
       v-bind="i.style"
-      :image="renderImage(i.icon)"
+      :image="$renderImage(i.icon)"
     ></float-image>
   </section-wrapper>
 </template>

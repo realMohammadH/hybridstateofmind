@@ -32,84 +32,97 @@ const boxes = ref([
       background: "blue",
     },
   },
+  {
+    class: "box4",
+    style: {
+      background: "green",
+    },
+  },
+  {
+    class: "box5",
+    style: {
+      background: "goldenrod",
+    },
+  },
+  {
+    class: "box6",
+    style: {
+      background: "gold",
+    },
+  },
 ]);
 
-onMounted(() => {
-  // console.log(itemRefs.value);
-  console.log(box.value);
-  /*
-gsap.to(box1.value, {
-scrollTrigger: {
-  trigger: box1.value,
-  pin: true, // pin the trigger element while active
-  start: "bottom bottom", // when the top of the trigger hits the top of the viewport
-  end: "+=500", // end after scrolling 500px beyond the start
-  scrub: 3, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-  snap: {
-    snapTo: "labels", // snap to the closest label in the timeline
-    duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-    delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
-    ease: "power1.inOut", // the ease of the snap animation ("power3" by default)
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: box.value,
+    start: "top center",
+    markers: true,
   },
-},
 });
-*/
-  /*
-  gsap.to(box2.value, {
-    scrollTrigger: {
-      trigger: box2.value,
-      start: " center center ",
-      markers: true,
-      scrub: true,
-    },
-    scale: 2,
-    // delay: 1,
-    duration: 2,
-  });
-  */
 
+const sectionImage = ref("../../assets/images/audience-image.png");
+const x_box = ref(null);
+
+const star = ref(null);
+
+const myCard = ref(null);
+
+onMounted(() => {
   box.value.forEach((b, i) => {
-    ScrollTrigger.create({
-      trigger: b,
-      start: "top center",
-      pin: true,
-      pinSpacing: false,
-      end: "+=500",
+    const tween = gsap.timeline({
+      scrollTrigger: {
+        trigger: b,
+        start: "top center",
+        end: "top center",
+        markers: true,
+        scrub: true,
+      },
     });
+
+    tween.fromTo(
+      b,
+      { opacity: 0, scale: 0 },
+      { opacity: 1, scale: 1, delay: 3, rotation: 360 }
+    );
   });
 
-  box.value.forEach((b, i) => {
-    console.log(b, i);
+  gsap.fromTo(x_box.value, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1 });
+
+  gsap.to(star.value.$el, {
+    scale: 2,
+  });
+
+  gsap.to(myCard.value.$e, {
+    scale: 2,
   });
 });
 </script>
 
 <template>
   <div class="animation" ref="parentBox">
-    <!-- <div class="box box_1" ref="itemRefs"></div>
-    <div class="box box_2" ref="itemRefs"></div>
-    <div class="box box_3" ref="itemRefs"></div> -->
-
     <div
       v-for="b in boxes"
-      class="mybox"
+      :key="b"
+      class="box"
       :class="[b.class]"
       :style="{ background: b.style.background }"
       ref="box"
     ></div>
+
+    <float-image
+      width="279px"
+      height="279px"
+      :zIndex="99"
+      ref="star"
+      :image="$renderImage(sectionImage)"
+    >
+    </float-image>
+
+    <card width="200px" height="200px" background="#BEF0CB" ref="myCard"></card>
+
+    <wrapper class="x_box" width="200px" height="200px" ref="x_box"> </wrapper>
   </div>
 </template>
-
-<script>
-// box.value.forEach((b, i) => {
-//   ScrollTrigger.create({
-//     trigger: b,
-//     start: "top top",
-//     pin: true,
-//     pinSpacing: false,
-//   });
-// });
-</script>
 
 <style scoped>
 .animation {
@@ -117,36 +130,14 @@ scrollTrigger: {
   width: 1215px;
   margin: 0 auto;
   min-height: 100vh;
+  display: grid;
+  gap: 300px;
+  justify-content: center;
 }
 
 .box {
-  width: 100%;
-  height: 100vh;
-}
-
-.box_1 {
-  background-color: aqua;
-}
-
-.box_2 {
-  background-color: blue;
-}
-
-.box_3 {
-  background-color: darkorange;
-}
-
-.box_4 {
-  background: black;
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 100px; */
-  height: auto;
-}
-.mybox {
-  height: 100vh;
-  width: 100%;
+  height: 200px;
+  width: 200px;
 }
 
 .boxv2:nth-child(1) {
@@ -157,5 +148,8 @@ scrollTrigger: {
 }
 .boxv2:nth-child(3) {
   background-color: darkorange;
+}
+.x_box {
+  background: #ad7be9;
 }
 </style>
