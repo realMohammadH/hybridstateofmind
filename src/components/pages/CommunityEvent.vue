@@ -1,5 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 const icon1 = ref("../../assets/images/community-vector.png");
 const icon2 = ref("../../assets/images/community-vector-2.png");
@@ -18,6 +21,7 @@ const sectionVectors = ref([
       left: "0",
       right: "0",
       translateY: "50%",
+      zIndex: 1,
     },
   },
   {
@@ -44,10 +48,39 @@ const sectionVectors = ref([
     },
   },
 ]);
+
+const vectors = ref([]);
+const section = ref(null);
+onMounted(() => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section.value.$el,
+      start: "top center",
+      end: "50% 50%",
+    },
+  });
+
+  const v1 = vectors.value[1];
+  tl.from(v1.$el, { opacity: 0, scale: 0, duration: 0.3 })
+    .to(v1.$el, {
+      scale: 1.3,
+      opacity: 1,
+      rotation: 360,
+      repeat: 0,
+    })
+    .to(v1.$el, { scale: 1, duration: 0.3 });
+
+  const v2 = vectors.value[2];
+  tl.fromTo(
+    v2.$el,
+    { scale: 0, opacity: 0 },
+    { scale: 1, opacity: 1, duration: 0.3 }
+  );
+});
 </script>
 
 <template>
-  <section-wrapper class="community-events">
+  <section-wrapper class="community-events" ref="section">
     <container>
       <wrapper width="570px" margin="0 0 48px">
         <section-title margin="0 0 15px"
@@ -73,6 +106,7 @@ const sectionVectors = ref([
       :key="i"
       v-bind="i.style"
       :image="$renderImage(i.icon)"
+      ref="vectors"
     ></float-image>
   </section-wrapper>
 </template>
@@ -80,7 +114,6 @@ const sectionVectors = ref([
 <style scoped>
 section {
   overflow: visible !important;
-  /* clip-path: inset(0 0 5% 0); */
   height: 750px;
   padding-bottom: 0% !important;
   background: #dac3ff;
