@@ -1,9 +1,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
+gsap.registerPlugin(ScrollTrigger);
 
 const sectionImage = ref("../../assets/images/store-image.png");
-
 const cardsContent = ref([
   {
     title: "Stay updated with what’s hot in the world of events!",
@@ -30,7 +32,6 @@ const cardsContent = ref([
     image: "../../assets/images/store-6.png",
   },
 ]);
-
 const imageStyle = ref({
   top: "0",
   left: "0",
@@ -39,10 +40,39 @@ const imageStyle = ref({
   width: "80px",
   height: "80px",
 });
+
+const section = ref(null);
+const star = ref(null);
+const vectors = ref([]);
+onMounted(() => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section.value.$el,
+      start: "top center",
+      end: "50% 50%",
+    },
+  });
+
+  vectors.value.forEach((v) => {
+    tl.from(v.$el, { scale: 0, opacity: 0, duration: 0.2 })
+      .to(v.$el, { scale: 1.1, opacity: 1, duration: 0.2 })
+      .to(v.$el, { scale: 0.8, opacity: 1, duration: 0.2 })
+      .to(v.$el, { scale: 1, opacity: 1, duration: 0.2 })
+      .to(v.$el, { scale: 0.8, opacity: 1, duration: 0.2 })
+      .to(v.$el, { scale: 1, opacity: 1, duration: 0.2 });
+  });
+
+  gsap.to(star.value.$el, {
+    rotation: 360,
+    repeat: -1,
+    ease: "none",
+    duration: 2,
+  });
+});
 </script>
 
 <template>
-  <section-wrapper>
+  <section-wrapper ref="section">
     <container>
       <section-title color="white" margin="0 0 80px">
         What’s in store?
@@ -59,7 +89,11 @@ const imageStyle = ref({
           cardTitleSize="22px"
           :rounded="true"
         >
-          <float-image v-bind="imageStyle" :image="$renderImage(c.image)">
+          <float-image
+            v-bind="imageStyle"
+            :image="$renderImage(c.image)"
+            ref="vectors"
+          >
           </float-image>
         </card>
       </grid>
@@ -71,6 +105,7 @@ const imageStyle = ref({
       right="0"
       translateX="45%"
       translateY="45%"
+      ref="star"
       :image="$renderImage(sectionImage)"
     >
     </float-image>
