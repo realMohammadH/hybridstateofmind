@@ -1,5 +1,9 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 const rightColCard = ref({
   title: "Note:",
   subTitle:
@@ -88,10 +92,36 @@ const icons = ref([
     },
   },
 ]);
+
+const section = ref(null);
+const cardIcons = ref([]);
+const sectionIcons = ref([]);
+onMounted(() => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section.value.$el,
+      start: "top center",
+      end: "10% 50%",
+    },
+  });
+
+  cardIcons.value.forEach((i) => {
+    tl.fromTo(i.$el, { scale: 0, duration: 0.4 }, { scale: 1, duration: 0.4 });
+  });
+
+  sectionIcons.value.forEach((i) => {
+    gsap.to(i.$el, {
+      rotation: 360,
+      repeat: -1,
+      ease: "none",
+      duration: 2,
+    });
+  });
+});
 </script>
 
 <template>
-  <section-wrapper background="var(--secondary-color)">
+  <section-wrapper ref="section">
     <container>
       <flex alignItems="start" gap="220px">
         <grid width="50%">
@@ -127,7 +157,11 @@ const icons = ref([
             :padding="c.padding"
             :rounded="c.rounded"
           >
-            <float-image v-bind="c.iconStyle" :image="$renderImage(c.icon)">
+            <float-image
+              v-bind="c.iconStyle"
+              :image="$renderImage(c.icon)"
+              ref="cardIcons"
+            >
             </float-image>
           </card>
         </grid>
@@ -138,6 +172,7 @@ const icons = ref([
       :key="i"
       v-bind="i.style"
       :image="$renderImage(i.icon)"
+      ref="sectionIcons"
     >
     </float-image>
   </section-wrapper>
@@ -146,5 +181,6 @@ const icons = ref([
 <style scoped>
 section {
   overflow: visible !important;
+  background-color: var(--secondary-color);
 }
 </style>
