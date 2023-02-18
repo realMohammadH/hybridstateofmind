@@ -21,7 +21,6 @@ const sectionVectors = ref([
       left: "0",
       right: "0",
       translateY: "50%",
-      zIndex: 1,
     },
   },
   {

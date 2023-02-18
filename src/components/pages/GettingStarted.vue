@@ -1,5 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 const cardsData = ref([
   {
@@ -47,6 +50,18 @@ const icons = ref([
     },
   },
 ]);
+
+const stars = ref([]);
+onMounted(() => {
+  stars.value.forEach((s) => {
+    gsap.to(s.$el, {
+      rotation: 360,
+      repeat: -1,
+      ease: "none",
+      duration: 2,
+    });
+  });
+});
 </script>
 
 <template>
@@ -72,6 +87,7 @@ const icons = ref([
       :key="i"
       v-bind="i.style"
       :image="$renderImage(i.icon)"
+      ref="stars"
     >
     </float-image>
   </section-wrapper>
