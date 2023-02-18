@@ -1,5 +1,9 @@
 <script setup>
-import { ref, render } from "vue";
+import { ref, onMounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const icon1 = ref("../../assets/images/leaderShip-1.png");
 const icon2 = ref("../../assets/images/leaderShip-2.png");
@@ -69,10 +73,35 @@ const icons = ref([
     },
   },
 ]);
+
+const animIcons = ref([]);
+const section = ref(null);
+onMounted(() => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section.value.$el,
+      start: "top center",
+      end: "10% 50%",
+    },
+  });
+
+  animIcons.value.slice(2).forEach((i) => {
+    tl.from(i.$el, { scale: 0, duration: 0.2 }).to(i.$el, {
+      scale: 1,
+      duration: 0.2,
+    });
+    gsap.to(i.$el, {
+      rotation: 360,
+      repeat: -1,
+      ease: "none",
+      duration: 2,
+    });
+  });
+});
 </script>
 
 <template>
-  <section-wrapper class="event-leader-ship">
+  <section-wrapper class="event-leader-ship" ref="section">
     <container>
       <wrapper width="520px" align="center">
         <section-title margin="0 0 9px"
@@ -91,6 +120,7 @@ const icons = ref([
       :key="i"
       v-bind="i.style"
       :image="$renderImage(i.icon)"
+      ref="animIcons"
     >
     </float-image>
   </section-wrapper>
