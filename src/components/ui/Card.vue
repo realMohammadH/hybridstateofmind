@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, onMounted } from "vue";
 const props = defineProps({
   className: {
     type: String,
@@ -68,6 +68,7 @@ const cardStyle = ref({
       { activeShadow: props.shadow, rounded: props.rounded },
     ]"
     :style="cardStyle"
+    ref="card"
   >
     <image-wrapper v-if="props.cardImage" :margin="props.cardImageMargin">
       <img :src="props.cardImage" alt="" />

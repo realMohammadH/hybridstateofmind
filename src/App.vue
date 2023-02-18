@@ -13,7 +13,7 @@ import Animation from "./components/pages/Animation.vue";
 </script>
 
 <template>
-  <!-- <app-header></app-header>
+  <app-header></app-header>
   <main>
     <hero> </hero>
     <audience></audience>
@@ -24,8 +24,8 @@ import Animation from "./components/pages/Animation.vue";
     <event-leadership></event-leadership>
     <FAQ></FAQ>
   </main>
-  <app-footer></app-footer> -->
-  <animation></animation>
+  <app-footer></app-footer>
+  <!-- <animation></animation> -->
 </template>
 
 <style scoped>

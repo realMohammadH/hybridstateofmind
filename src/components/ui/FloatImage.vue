@@ -1,5 +1,6 @@
 <script setup>
 import { ref, defineProps, computed } from "vue";
+
 const props = defineProps({
   top: {
     type: String,
@@ -21,13 +22,13 @@ const props = defineProps({
   },
   translateX: {
     type: String,
-    default: "0px",
+    default: "0",
   },
   translateY: {
     type: String,
-    default: "0px",
+    default: "0",
   },
-  index: {
+  zIndex: {
     type: Number,
   },
   image: {
@@ -47,7 +48,7 @@ const floatImageStyle = ref({
   width: props.width,
   height: props.height,
   transform: translate,
-  zIndex: props.index,
+  zIndex: props.zIndex,
 });
 </script>
 

@@ -54,12 +54,10 @@ onMounted(() => {
   });
 
   vectors.value.forEach((v) => {
-    tl.from(v.$el, { scale: 0, opacity: 0, duration: 0.2 })
-      .to(v.$el, { scale: 1.1, opacity: 1, duration: 0.2 })
-      .to(v.$el, { scale: 0.8, opacity: 1, duration: 0.2 })
-      .to(v.$el, { scale: 1, opacity: 1, duration: 0.2 })
-      .to(v.$el, { scale: 0.8, opacity: 1, duration: 0.2 })
-      .to(v.$el, { scale: 1, opacity: 1, duration: 0.2 });
+    tl.from(v.$el, { scale: 0, opacity: 0, duration: 0.1 })
+      .to(v.$el, { scale: 1.1, opacity: 1, duration: 0.1 })
+      .to(v.$el, { scale: 0.8, opacity: 1, duration: 0.1 })
+      .to(v.$el, { scale: 1, opacity: 1, duration: 0.1 });
   });
 
   gsap.to(star.value.$el, {
